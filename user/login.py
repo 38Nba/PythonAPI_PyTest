@@ -13,6 +13,7 @@ payload = {
 response1 = requests.post("https://petstore.swagger.io/v2/user", data=payload)
 
 cookie_value = response1.cookies.get("auth_cookie")
+
 cookies = {}
 if cookie_value is not None:
   cookies.update({"auth_cookie": cookie_value})
