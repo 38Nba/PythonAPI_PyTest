@@ -5,7 +5,9 @@ from lib.assertions import Assertions
 class TestUserEdit(BaseCase):
     def test_edit_just_created_user(self):
         register_data = self.prepare_registration_date()
-        response1 = requests.post('https://playground.learnqa.ru/api/user/', data=register_data)
+        response1 = requests.post('https://playground.learnqa.ru/api/user/',
+                                  data=register_data)
+
 
         Assertions.assert_code_status(response1, 200)
         Assertions.assert_json_has_key(response1, "id")
@@ -21,7 +23,8 @@ class TestUserEdit(BaseCase):
             'password': password
         }
 
-        response2 = requests.post("https://playground.learnqa.ru/api/user/login", data=login_data)
+        response2 = requests.post("https://playground.learnqa.ru/api/user/login",
+                                  data=login_data)
 
         auth_sid = self.get_cookie(response2, "auth_sid")
         token = self.get_header(response2, "x-csrf-token")
